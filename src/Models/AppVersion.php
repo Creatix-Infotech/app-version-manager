@@ -80,15 +80,15 @@ class AppVersion extends Model
         $cacheKey = config('app-version-manager.cache.key_prefix', 'app_version_policy_').$platformValue;
 
         if ($useCache) {
-            $rawAttributes = Cache::remember($cacheKey, $ttl, function () use ($platformValue) {
+            $raw = Cache::remember($cacheKey, $ttl, function () use ($platformValue) {
                 return static::fetchActivePolicy($platformValue)?->getRawOriginal();
             });
 
-            if (! $rawAttributes) {
+            if (! is_array($raw)) {
                 return null;
             }
 
-            return (new static)->newFromBuilder($rawAttributes);
+            return (new static)->newFromBuilder($raw);
         }
 
         return static::fetchActivePolicy($platformValue);
