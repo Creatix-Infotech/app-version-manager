@@ -66,5 +66,35 @@ class AppVersionManager
             'update_message' => $policy->update_message ?: config('app-version-manager.defaults.update_message'),
         ];
     }
-}
 
+    /**
+     * Get pre-filled next version values for a platform (auto-incrementing latest version & build).
+     *
+     * @return array{
+     *     platform: string|null,
+     *     latest_version: string,
+     *     latest_build: int,
+     *     minimum_version: string,
+     *     minimum_build: int,
+     *     store_url: string,
+     *     update_message: string|null,
+     *     is_active: bool
+     * }|null
+     */
+    public function prefillFor(string|Platform|null $platform = null): ?array
+    {
+        $modelClass = config('app-version-manager.model', AppVersion::class);
+
+        return $modelClass::prefillFor($platform);
+    }
+
+    /**
+     * Increment the last numeric segment of a version string.
+     */
+    public function bumpVersion(string $version): string
+    {
+        $modelClass = config('app-version-manager.model', AppVersion::class);
+
+        return $modelClass::bumpVersion($version);
+    }
+}

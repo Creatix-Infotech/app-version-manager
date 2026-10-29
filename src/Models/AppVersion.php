@@ -116,6 +116,66 @@ class AppVersion extends Model
     }
 
     /**
+     * Increment the last numeric segment of a dotted version string (e.g. 1.0.0 -> 1.0.1).
+     */
+    public static function bumpVersion(string $version): string
+    {
+        $parts = explode('.', trim($version));
+        $lastIndex = array_key_last($parts);
+
+        if ($lastIndex !== null && is_numeric($parts[$lastIndex])) {
+            $parts[$lastIndex] = (string) ((int) $parts[$lastIndex] + 1);
+        }
+
+        return implode('.', $parts);
+    }
+
+    /**
+     * Build pre-fill values for creating the next version policy.
+     *
+     * Increments latest_version patch and latest_build (+1), while keeping
+     * minimum_version, minimum_build, store_url, and update_message preserved from the last record.
+     *
+     * @return array{
+     *     platform: string|null,
+     *     latest_version: string,
+     *     latest_build: int,
+     *     minimum_version: string,
+     *     minimum_build: int,
+     *     store_url: string,
+     *     update_message: string|null,
+     *     is_active: bool
+     * }|null
+     */
+    public static function prefillFor(string|Platform|null $platform = null): ?array
+    {
+        $platformValue = $platform instanceof Platform ? $platform->value : $platform;
+
+        $source = $platformValue !== null
+            ? static::where('platform', $platformValue)->orderByDesc('latest_build')->first()
+            : static::orderByDesc('latest_build')->first();
+
+        if (! $source) {
+            return null;
+        }
+
+        $bump = $platformValue === null
+            || (is_string($source->platform) && $source->platform === $platformValue)
+            || ($source->platform instanceof Platform && $source->platform->value === $platformValue);
+
+        return [
+            'platform' => $platformValue ?? ($source->platform instanceof Platform ? $source->platform->value : (string) $source->platform),
+            'latest_version' => $bump ? static::bumpVersion($source->latest_version) : $source->latest_version,
+            'latest_build' => $bump ? ((int) $source->latest_build + 1) : (int) $source->latest_build,
+            'minimum_version' => $source->minimum_version,
+            'minimum_build' => (int) $source->minimum_build,
+            'store_url' => $source->store_url,
+            'update_message' => $source->update_message ?: config('app-version-manager.defaults.update_message'),
+            'is_active' => true,
+        ];
+    }
+
+    /**
      * Compute the update requirement for a given client build number.
      */
     public function requirementFor(int $build): UpdateRequirement
