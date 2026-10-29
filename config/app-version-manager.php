@@ -114,3 +114,4 @@ return [
         'update_message' => 'Please update to the latest version to continue using the app.',
     ],
 ];
+

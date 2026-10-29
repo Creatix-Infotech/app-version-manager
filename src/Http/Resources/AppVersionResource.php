@@ -41,3 +41,4 @@ class AppVersionResource extends JsonResource
         ];
     }
 }
+

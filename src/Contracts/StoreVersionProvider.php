@@ -22,3 +22,4 @@ interface StoreVersionProvider
      */
     public function latestLiveVersion(): ?StoreVersion;
 }
+

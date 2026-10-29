@@ -21,3 +21,4 @@ class StoreVersionReleased
         public string $action = 'promoted', // 'created' | 'promoted'
     ) {}
 }
+

@@ -147,3 +147,4 @@ class GooglePlayClient implements StoreVersionProvider
             ?: config('services.googleplay.package_name');
     }
 }
+

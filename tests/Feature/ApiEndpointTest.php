@@ -67,3 +67,4 @@ class ApiEndpointTest extends TestCase
             ]);
     }
 }
+

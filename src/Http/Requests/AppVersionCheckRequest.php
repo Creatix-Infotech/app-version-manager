@@ -22,3 +22,4 @@ class AppVersionCheckRequest extends FormRequest
         ];
     }
 }
+

@@ -30,3 +30,4 @@ class SyncStoreVersionsCommand extends Command
         return self::SUCCESS;
     }
 }
+

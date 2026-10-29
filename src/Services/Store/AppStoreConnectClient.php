@@ -162,3 +162,4 @@ class AppStoreConnectClient implements StoreVersionProvider
             ?: config('services.appstore.app_id');
     }
 }
+

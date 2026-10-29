@@ -20,3 +20,4 @@ enum UpdateRequirement: string
         return $this !== self::FORCED;
     }
 }
+

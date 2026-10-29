@@ -42,3 +42,4 @@ class AppVersionApiController extends Controller
         ]);
     }
 }
+

@@ -71,3 +71,4 @@ class AppVersionManagerServiceProvider extends ServiceProvider
         }
     }
 }
+

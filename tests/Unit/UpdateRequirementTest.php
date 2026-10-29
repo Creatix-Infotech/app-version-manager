@@ -55,3 +55,4 @@ class UpdateRequirementTest extends TestCase
         $this->assertTrue($higherRequirement->isSupported());
     }
 }
+

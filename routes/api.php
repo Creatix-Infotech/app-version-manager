@@ -10,3 +10,4 @@ $routeName = config('app-version-manager.api.route', 'app-version');
 Route::prefix($prefix)->middleware($middleware)->group(function () use ($routeName) {
     Route::get($routeName, AppVersionApiController::class)->name('app-version.check');
 });
+

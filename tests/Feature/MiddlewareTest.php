@@ -70,3 +70,4 @@ class MiddlewareTest extends TestCase
             ->assertJson(['success' => true]);
     }
 }
+

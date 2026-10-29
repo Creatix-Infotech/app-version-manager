@@ -18,3 +18,4 @@ class AppVersion extends Facade
         return AppVersionManager::class;
     }
 }
+

@@ -60,3 +60,4 @@ class EnforceMinimumAppVersion
         return $next($request);
     }
 }
+

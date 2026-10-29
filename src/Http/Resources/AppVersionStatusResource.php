@@ -42,3 +42,4 @@ class AppVersionStatusResource extends JsonResource
         ];
     }
 }
+
