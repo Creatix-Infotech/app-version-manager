@@ -5,6 +5,11 @@ All notable changes to `creatix/app-version-manager` will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-10-30
+
+### Fixed
+- Allow `firebase/php-jwt` 7.x (`^6.10|^7.0`). Apps that also use `kreait/firebase-php` 8 (which needs php-jwt 7) couldn't install the package, and every php-jwt 6.x release is flagged by a security advisory (PKSA-y2cr-5h3j-g3ys), so Composer refuses it. Only `JWT::encode()` is used, which is unchanged in 7.x.
+
 ## [1.0.0] - 2026-10-30
 
 ### Added
