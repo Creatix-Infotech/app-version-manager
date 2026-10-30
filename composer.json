@@ -1,21 +1,44 @@
 {
     "name": "creatix/app-version-manager",
-    "description": "Mobile app version policy enforcement, forced/optional update gates, and automated store sync for Laravel.",
+    "description": "Enterprise-ready Laravel package for mobile app version policy enforcement, forced/optional update gates (HTTP 426), in-app update checks, and automated App Store & Google Play Store release sync.",
+    "type": "library",
     "keywords": [
         "creatix",
         "laravel",
+        "laravel-package",
         "app-version",
-        "mobile-updates",
+        "app-version-manager",
+        "app-versioning",
+        "mobile-app",
         "force-update",
+        "forced-update",
+        "optional-update",
+        "in-app-update",
+        "version-checker",
+        "version-gate",
+        "update-gate",
+        "mobile-api",
+        "upgrade-required",
+        "http-426",
+        "ios",
+        "android",
+        "flutter",
+        "react-native",
         "app-store-connect",
-        "google-play"
+        "play-store",
+        "semver",
+        "api-versioning"
     ],
-    "homepage": "https://github.com/creatix/app-version-manager",
+    "homepage": "https://github.com/Creatix-Infotech/app-version-manager",
+    "support": {
+        "source": "https://github.com/Creatix-Infotech/app-version-manager",
+        "docs": "https://github.com/Creatix-Infotech/app-version-manager#readme"
+    },
     "license": "MIT",
     "authors": [
         {
             "name": "Creatix Infotech",
-            "email": "info@creatixinfotech.com",
+            "email": "hello@creatixinfotech.com",
             "role": "Developer"
         }
     ],
@@ -56,7 +79,9 @@
     "config": {
         "sort-packages": true
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
     "minimum-stability": "stable",
     "prefer-stable": true
 }
-
